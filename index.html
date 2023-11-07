@@ -1,0 +1,210 @@
+<!--Glenn Ford-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Advising Appointment Form</title>
+</head>
+
+<body class="background-container">
+    <h2>Advising Appointment</h2>
+    <div class="container">
+        <form id="appointment-form" method="post" action="thankyou.html">
+            
+           <!---Included contact information-->
+            <fieldset>
+
+                <legend>Contact Information</legend>
+                <label for="firstname">
+                    First Name:
+                    <input autofocus type="text" name="firstname" id="firstname" required placeholder="First Name">
+                </label>
+                <label for="lastname">
+                    Last Name:
+                    <input type="text" name="lastname" id="lastname" required placeholder="Last Name">
+                </label>
+                <label for="email">
+                    Email:
+                    <input type="email" name="email" id="email" required placeholder="Email">
+                </label>
+            </fieldset>
+
+            <!-- Include teacher options here -->
+
+            <fieldset>
+                <legend>Teacher</legend>
+                <select name="teacher" id="teacher">
+                    <option value="Tiffany Ford">Tiffany Ford</option>
+                    <option value="Kirsten Markley">Kirsten Markley</option>
+                    <option value="Jackson Lewis">Jackson Lewis</option>
+                </select>
+            </fieldset>
+
+            <!-- Include Month options here -->
+
+            <fieldset>
+                <legend>Month</legend>
+                <select name="month" id="month">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="January">March</option>
+                    <option value="February">April</option>
+                    <option value="January">May</option>
+                    <option value="February">June</option>
+                    <option value="January">July</option>
+                    <option value="February">August</option>
+                    <option value="January">September</option>
+                    <option value="February">October</option>
+                    <option value="January">November</option>
+                    <option value="February">December</option>
+                    
+                </select>
+            </fieldset>
+
+
+            <!-- Included day options here -->
+
+            <fieldset>
+                <legend>
+                    Day
+                </legend>
+                <select name="day" id="day" required>
+                    <option value="">Select a day</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+            </fieldset>
+
+
+            <!---Included Time of day option-->
+
+            <fieldset>
+                <legend>
+                    Time
+                </legend>
+                <label>
+                    <input type="radio" name="time" value="am" required> AM
+                </label>
+                <label>
+                    <input type="radio" name="time" value="pm" required> PM
+                </label>
+            </fieldset>
+
+            <!--Included type of classes-->
+
+            <fieldset>
+                <legend>
+                Classes
+                </legend>
+                <label>
+                    <input type="checkbox" name="class" value="Math"> Math
+                </label>
+                <label>
+                    <input type="checkbox" name="class" value="Science"> Science
+                </label>
+                <label>
+                    <input type="checkbox" name="class" value="History"> History
+                </label>
+                <label>
+                    <input type="checkbox" name="class" value="English"> English
+                </label>
+                <label>
+                    <input type="checkbox" name="class" value="Art"> Art
+                </label>
+            </fieldset>
+
+
+            <!--Included  Comments section-->
+
+            <fieldset>
+                <legend>Comments</legend>
+                <textarea name="comments" id="comments" rows="5" cols="40"></textarea>
+            </fieldset>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="user-input"></div>
+  
+    <!--Java script -->
+<script>
+    document.getElementById("appointment-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var firstname = encodeURIComponent(document.getElementById("firstname").value);
+        var lastname = encodeURIComponent(document.getElementById("lastname").value);
+        var email = encodeURIComponent(document.getElementById("email").value);
+        var teacher = encodeURIComponent(document.getElementById("teacher").value);
+        var month = encodeURIComponent(document.getElementById("month").value);
+        var day = encodeURIComponent(document.getElementById("day").value);
+        var time = encodeURIComponent(document.querySelector('input[name="time"]:checked').value);
+        var classes = document.querySelectorAll('input[name="class"]:checked');
+        var comments = encodeURIComponent(document.getElementById("comments").value);
+
+        // Create an array to store the selected classes
+        var selectedClasses = [];
+        for (var i = 0; i < classes.length; i++) {
+            selectedClasses.push(encodeURIComponent(classes[i].value));
+        }
+
+        // Join the selected classes into a comma-separated string
+        var classesString = selectedClasses.join(", ");
+
+        // Create the URL with query parameters
+        var url = "thankyou.html" +
+            "?firstname=" + firstname +
+            "&lastname=" + lastname +
+            "&email=" + email +
+            "&teacher=" + teacher +
+            "&month=" + month +
+            "&day=" + day +
+            "&time=" + time +
+            "&classes=" + classesString +
+            "&comments=" + comments;
+
+        // Redirected to thankyou.html with the query parameters
+        window.location.href = url;
+    });
+
+</script>
+
+</body>
+</html>
+
+    
+</body>
+
+</html>
+
