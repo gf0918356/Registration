@@ -1,0 +1,57 @@
+<!--Glenn Ford-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Thank you</title>
+</head>
+<body class="background-container">
+    <div class="container">
+        <h2>Thank you for requesting an appointment! We will be in touch soon!</h2>
+        <div id="form-data">
+
+            <div id="form-data"></div>
+
+            <script>
+                // Step 1: Decode the query string in the URL
+                
+                var query = decodeURIComponent(window.location.search);
+                query = query.slice(1); 
+                
+                // Step 2: Split query parameters into an array
+                var queryParams = query.split("&"); 
+    
+                // Step 3: Initialize HTML content to display the query parameters
+                var displayHTML = "<h3>Your Appointment Information:</h3><ul>";
+    
+                // Step 4: Loop through each query parameter
+                for (var i = 0; i < queryParams.length; i++) {
+
+                    // Step 5: Split parameter into key and value
+                    var param = queryParams[i].split("=");
+                    var key = param[0];
+                    var value = param[1];
+
+                    // Step 6: Special handling for "classes" parameter
+                    if (key === "classes") {
+                        // Split the value by "," and create a list of selected classes
+                        var classes = value.split(",");
+                        value = classes.join(", ");
+                    }
+
+                    // Step 7: Create a list item for each parameter
+                    displayHTML += "<li><strong>" + key + ":</strong> " + value + "</li>";
+                }
+    
+                // Step 8: Finalize HTML content with a closing ul tag
+                displayHTML += "</ul>";
+    
+                // Step 9: Set the HTML content to be displayed in the "form-data" div
+                document.getElementById("form-data").innerHTML = displayHTML;
+            </script>
+            
+        </div>
+    </div>
+</body>
+</html>
