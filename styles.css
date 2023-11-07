@@ -1,0 +1,48 @@
+/*Glenn Ford */
+.background-container {
+    background-image: url('registration.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: rgb(255, 255, 255);
+}
+
+.container {
+    margin: auto;
+    width: 80%;
+    background-color: rgb(11, 122, 196);
+    padding: 25px;
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    padding-bottom: 5px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+}
+
+input {
+    position: absolute;
+    left: 15%;
+    width: 75%;
+}
+
+#day {
+    position: static; 
+    width: 150px; 
+    margin: 0; 
+}
+
+textarea {
+    width: 100%;
+    z-index: 2;
+    margin-bottom: 20px;
+}
+
+
